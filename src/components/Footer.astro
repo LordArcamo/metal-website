@@ -1,0 +1,263 @@
+---
+const footerLinks = {
+  Metals: [
+    { label: "Steel", href: "/metals#steel" },
+    { label: "Aluminum", href: "/metals#aluminum" },
+    { label: "Copper & Alloys", href: "/metals#copper" },
+    { label: "Specialty Metals", href: "/metals#specialty" },
+    { label: "View All Metals", href: "/metals" },
+  ],
+  Services: [
+    { label: "Precision Cutting", href: "/services#cutting" },
+    { label: "Custom Sizing", href: "/services#sizing" },
+    { label: "Fast Delivery", href: "/services#delivery" },
+    { label: "No Minimum Orders", href: "/services#minimums" },
+    { label: "Value Processing", href: "/services#processing" },
+  ],
+  Company: [
+    { label: "About Us", href: "/about" },
+    { label: "Find a Store", href: "/locations" },
+    { label: "Franchise Opportunities", href: "/franchise" },
+    { label: "Careers", href: "/careers" },
+    { label: "Blog & Resources", href: "/blog" },
+  ],
+  Support: [
+    { label: "Get a Quote", href: "/quote" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "FAQs", href: "/faq" },
+    { label: "Metal Guide", href: "/metal-guide" },
+    { label: "Alloy Selector", href: "/alloy-selector" },
+  ],
+};
+
+const socialLinks = [
+  { name: "Facebook", href: "https://www.facebook.com/MetalSupermarkets", icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/metal-supermarkets", icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
+  { name: "YouTube", href: "https://www.youtube.com/MetalSupermarkets", icon: "M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.97A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" },
+];
+---
+
+<footer class="site-footer">
+  <!-- Top strip -->
+  <div class="footer-top-strip">
+    <div class="container footer-strip-inner">
+      <div class="footer-tagline">
+        <a href="/" class="footer-logo-link">
+          <img src="/logo.png" alt="Metal Supermarkets" class="footer-logo-img" width="160" height="58" />
+        </a>
+        <p class="footer-tagline-text">
+          "The Convenience Stores for Metal™" — Any Metal. Any Size. Ready Fast.
+        </p>
+      </div>
+      <div class="footer-strip-ctas">
+        <a href="/quote" class="btn btn-primary">Get a Quote</a>
+        <a href="/locations" class="btn btn-outline">Find a Store</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main footer -->
+  <div class="footer-main">
+    <div class="container footer-grid">
+      {Object.entries(footerLinks).map(([category, links]) => (
+        <div class="footer-col">
+          <h4 class="footer-col-title">{category}</h4>
+          <ul class="footer-col-list">
+            {links.map((link) => (
+              <li>
+                <a href={link.href} class="footer-link">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p class="footer-copyright">
+        © {new Date().getFullYear()} Metal Supermarkets. All rights reserved.
+        <span class="footer-sep">|</span>
+        <a href="/privacy">Privacy Policy</a>
+        <span class="footer-sep">|</span>
+        <a href="/terms">Terms of Use</a>
+        <span class="footer-sep">|</span>
+        <a href="/sitemap.xml">Sitemap</a>
+      </p>
+      <div class="footer-social">
+        {socialLinks.map((s) => (
+          <a
+            href={s.href}
+            class="footer-social-link"
+            aria-label={s.name}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d={s.icon} stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+}
+
+/* Top strip */
+.footer-top-strip {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 0;
+}
+
+.footer-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.footer-logo-link { display: inline-block; margin-bottom: 10px; }
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.footer-logo-link:hover .footer-logo-img { opacity: 1; }
+
+.footer-tagline-text {
+  font-family: var(--font-light);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+.footer-strip-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Main footer */
+.footer-main {
+  padding: 60px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+.footer-col-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-col-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-link {
+  font-family: var(--font-light);
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-link:hover {
+  color: var(--blue);
+  padding-left: 6px;
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+  background: var(--bg);
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  font-family: var(--font-light);
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-copyright a:hover { color: var(--blue); }
+
+.footer-sep { color: var(--border-light); }
+
+.footer-social {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-social-link {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.footer-social-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(21,101,192,0.06);
+}
+</style>

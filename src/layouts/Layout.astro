@@ -1,0 +1,129 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "Metal Supermarkets — The World's Largest Small-Quantity Metal Supplier. Any Metal. Any Size. Ready Fast. 130+ stores across North America and the UK.",
+  keywords = "metal supplier, steel supplier, aluminum supplier, copper, brass, stainless steel, metal cutting, small quantity metals, metal store",
+  ogImage = "/og-image.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary SEO -->
+    <title>{title} | Metal Supermarkets</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Metal Supermarkets" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | Metal Supermarkets`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:site_name" content="Metal Supermarkets" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Metal Supermarkets`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Metal Supermarkets",
+        "description": "The World's Largest Small-Quantity Metal Supplier",
+        "url": "https://www.metalsupermarkets.com",
+        "logo": "https://www.metalsupermarkets.com/logo.svg",
+        "sameAs": [
+          "https://www.facebook.com/MetalSupermarkets",
+          "https://twitter.com/MetalSuperMkt",
+          "https://www.linkedin.com/company/metal-supermarkets"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Spanish"]
+        },
+        "areaServed": ["US", "CA", "GB"]
+      }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Scroll Reveal — re-observes on every paint so React islands are caught -->
+    <script>
+      function initReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        document
+          .querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+          .forEach((el) => observer.observe(el));
+
+        return observer;
+      }
+
+      // Initial run
+      let revealObserver = initReveal();
+
+      // Re-run after React islands hydrate (client:visible fires after scroll)
+      // Use MutationObserver to catch any newly added .reveal elements
+      const mutationObs = new MutationObserver(() => {
+        document
+          .querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible), .reveal-scale:not(.visible)')
+          .forEach((el) => revealObserver.observe(el));
+      });
+
+      mutationObs.observe(document.body, { childList: true, subtree: true });
+
+      // Also re-check after full page load
+      window.addEventListener('load', () => {
+        document
+          .querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible), .reveal-scale:not(.visible)')
+          .forEach((el) => revealObserver.observe(el));
+      });
+    </script>
+  </body>
+</html>

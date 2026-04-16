@@ -1,0 +1,380 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    id: "cutting",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`,
+    title: "Precision Cutting",
+    tagline: "Your Spec. Our Cut.",
+    desc: "We cut metal to your exact measurements — every time. Our experienced staff use industrial-grade equipment to ensure precision cuts with tight tolerances on every order.",
+    features: [
+      "Plasma cutting for thick plate",
+      "Bandsaw cutting for bars & tubing",
+      "Shearing for sheet metal",
+      "Abrasive cutting for hardened materials",
+      "Tolerances to ±0.015\"",
+      "Complex profiles on request",
+    ],
+    cta: "Get a Cutting Quote",
+  },
+  {
+    id: "sizing",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20M2 12l4-4m-4 4l4 4M22 12l-4-4m4 4l-4 4"/><path d="M12 2v20M12 2l-4 4m4-4l4 4M12 22l-4-4m4 4l4-4"/></svg>`,
+    title: "Custom Sizing",
+    tagline: "Any Length. Any Width.",
+    desc: "No standard size fits every project. Tell us your exact dimensions and we'll cut your order precisely. All metals, all shapes, any quantity.",
+    features: [
+      "Custom lengths from 1\" to full bar",
+      "Width and thickness to spec",
+      "Quantity from 1 piece to 1,000+",
+      "Multiple operations in one order",
+      "Ready same day in most cases",
+    ],
+    cta: "Request Custom Size",
+  },
+  {
+    id: "delivery",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+    title: "Fast Delivery",
+    tagline: "There When You Need It.",
+    desc: "Same-day and next-day delivery options available across our service areas. Alternatively, order online or by phone for nationwide shipping.",
+    features: [
+      "Same-day pickup at 130+ stores",
+      "Next-day local delivery",
+      "Nationwide shipping options",
+      "Real-time order tracking",
+      "Secure heavy-duty packaging",
+      "LTL freight for large orders",
+    ],
+    cta: "Find Your Store",
+  },
+  {
+    id: "processing",
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 19.07a10 10 0 010-14.14M12 2v2M12 20v2M2 12H0M24 12h-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`,
+    title: "Value-Added Processing",
+    tagline: "Job-Ready Metal.",
+    desc: "Beyond cutting, we offer additional processing to get your metal ready for the job site. Less time on your end means faster project completion.",
+    features: [
+      "Bending and forming",
+      "Drilling and punching",
+      "Grinding and deburring",
+      "Surface preparation",
+      "Thread cutting",
+      "Chamfering and countersinking",
+    ],
+    cta: "Ask About Processing",
+  },
+];
+
+const process = [
+  { step: "01", title: "Contact Us", desc: "Call, walk in, or submit online. Tell us what metal, grade, shape, and size you need." },
+  { step: "02", title: "Instant Quote", desc: "Our expert staff will provide an accurate, competitive quote — usually within minutes." },
+  { step: "03", title: "We Cut It", desc: "Your order is pulled from stock and cut to your exact specs using precision equipment." },
+  { step: "04", title: "Ready Fast", desc: "Pick up in-store or have it delivered. Most orders ready same day." },
+];
+---
+
+<Layout
+  title="Services — Cutting, Sizing, Delivery & More"
+  description="Metal Supermarkets offers precision cutting, custom sizing, fast delivery, and value-added processing. No minimum orders. Same-day service available."
+  keywords="metal cutting service, custom metal sizing, metal delivery, plasma cutting, bandsaw cutting, metal processing"
+>
+  <Header />
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero services-hero">
+      <div class="page-hero-bg"></div>
+      <div class="container">
+        <div class="page-hero-inner">
+          <span class="section-label">What We Do</span>
+          <div class="divider"></div>
+          <h1 class="display-xl page-hero-title">
+            Metal. Cut.<br />
+            <span class="text-red">Ready Fast.</span>
+          </h1>
+          <p class="page-hero-sub">
+            From raw stock to job-ready metal — our services cover every step.
+            No minimum orders. Expert staff. Same-day service available at 130+ locations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Steps -->
+    <section class="process-section">
+      <div class="container">
+        <div class="process-header reveal">
+          <span class="section-label">How It Works</span>
+          <div class="divider"></div>
+          <h2 class="display-md">Simple. Fast. Professional.</h2>
+        </div>
+        <div class="process-steps">
+          {process.map((p, i) => (
+            <div class={`process-step reveal delay-${i + 1}`}>
+              <div class="process-step-number">{p.step}</div>
+              <div class="process-step-connector"></div>
+              <h3 class="process-step-title">{p.title}</h3>
+              <p class="process-step-desc">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Detail -->
+    {services.map((service, i) => (
+      <section class={`service-detail ${i % 2 === 1 ? 'service-detail--alt' : ''}`} id={service.id}>
+        <div class="container service-detail-inner">
+          <div class="service-detail-content reveal-left">
+            <div class="service-detail-icon" set:html={service.icon} />
+            <span class="section-label">{service.tagline}</span>
+            <div class="divider"></div>
+            <h2 class="display-lg service-detail-title">{service.title}</h2>
+            <p class="service-detail-desc">{service.desc}</p>
+            <a href="/quote" class="btn btn-primary">{service.cta}</a>
+          </div>
+
+          <div class="service-detail-features reveal-right">
+            <div class="features-box">
+              <div class="features-box-label">What's Included</div>
+              <ul class="features-list">
+                {service.features.map((f) => (
+                  <li class="feature-item">
+                    <span class="feature-check">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- CTA -->
+    <section class="services-cta">
+      <div class="container">
+        <div class="reveal" style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2 class="display-md" style="margin-bottom: 16px;">Start Your Order Today</h2>
+          <p style="font-family: var(--font-light); font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7;">
+            Ready to get started? Contact your nearest Metal Supermarkets location or
+            submit an online quote request — we'll get back to you fast.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="/quote" class="btn btn-primary" style="padding: 18px 40px;">Get a Free Quote</a>
+            <a href="/locations" class="btn btn-outline" style="padding: 18px 32px;">Find a Store Near You</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.text-red { color: var(--blue); }
+
+.page-hero {
+  position: relative;
+  padding: calc(72px + 80px) 0 80px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('/images/workshop.jpg') center center / cover no-repeat;
+  filter: brightness(0.18) saturate(0.4);
+}
+
+.page-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.page-hero-title { margin-bottom: 24px; animation: slideInLeft 0.9s var(--ease-out) 0.3s both; }
+.page-hero-sub {
+  font-family: var(--font-light); font-size: 17px;
+  color: var(--text-secondary); line-height: 1.7;
+  max-width: 520px; margin-bottom: 36px;
+  animation: fadeInUp 0.9s var(--ease-out) 0.5s both;
+}
+
+/* Process */
+.process-section {
+  padding: var(--section-pad) 0;
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.process-header { margin-bottom: 48px; }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 2px; }
+}
+
+.process-step {
+  padding: 32px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  position: relative;
+  transition: all 0.25s;
+}
+
+.process-step:hover {
+  background: var(--surface-3);
+  border-color: var(--blue);
+}
+
+.process-step-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  color: rgba(21,101,192,0.15);
+  margin-bottom: 12px;
+}
+
+.process-step:hover .process-step-number { color: rgba(21,101,192,0.3); }
+
+.process-step-connector {
+  position: absolute;
+  top: 44px;
+  right: -1px;
+  width: 2px;
+  height: 24px;
+  background: var(--blue);
+  opacity: 0.3;
+}
+
+.process-step:last-child .process-step-connector { display: none; }
+
+.process-step-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.process-step-desc {
+  font-family: var(--font-light);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Service Details */
+.service-detail {
+  padding: var(--section-pad) 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.service-detail--alt {
+  background: var(--surface-1);
+}
+
+.service-detail-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .service-detail-inner { grid-template-columns: 1fr; }
+}
+
+.service-detail-icon {
+  color: var(--blue);
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.service-detail-title {
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.service-detail-desc {
+  font-family: var(--font-light);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+.features-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--blue);
+  padding: 32px;
+}
+
+.features-box-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.feature-check {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(21,101,192,0.1);
+  border: 1px solid rgba(21,101,192,0.3);
+  border-radius: 2px;
+  color: var(--blue);
+}
+
+/* CTA */
+.services-cta {
+  padding: var(--section-pad) 0;
+  background: var(--surface-1);
+  border-top: 2px solid var(--blue);
+}
+</style>

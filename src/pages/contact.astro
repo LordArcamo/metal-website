@@ -1,0 +1,565 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const offices = [
+  { region: "United States", count: "80+", desc: "Stores coast to coast", cities: ["New York", "Los Angeles", "Chicago", "Houston", "Atlanta", "Tampa", "Miami", "Orlando", "Columbus", "Pittsburgh"] },
+  { region: "Canada", count: "30+", desc: "From coast to coast", cities: ["Toronto", "Vancouver", "Calgary", "Ottawa", "Halifax", "Kelowna", "Edmonton", "Montreal"] },
+  { region: "United Kingdom", count: "20+", desc: "Across Great Britain", cities: ["London", "Manchester", "Birmingham", "Leeds", "Glasgow", "Bristol"] },
+];
+
+const faqs = [
+  { q: "Do you have minimum order requirements?", a: "No. We sell as little as one piece. Whether you need one rod or one thousand, we're here to help." },
+  { q: "Can you cut metal to custom sizes?", a: "Absolutely. Providing your exact measurements is the best way to ensure your order is ready quickly. Our staff can cut to any spec." },
+  { q: "How quickly can I get my order?", a: "Most orders are fulfilled same-day. Walk in or call ahead, and we'll have it ready for you." },
+  { q: "Do you deliver?", a: "Yes! We offer same-day pickup, local delivery, and nationwide shipping options. Contact your nearest store for delivery availability." },
+  { q: "Can I walk in without an order?", a: "Absolutely. All of our locations are walk-in friendly. No appointment needed." },
+  { q: "What payment methods do you accept?", a: "We accept major credit cards, debit, and corporate accounts. Contact your local store for specific payment options." },
+];
+---
+
+<Layout
+  title="Contact Us — Get a Quote or Find a Store"
+  description="Contact Metal Supermarkets for a free quote, find your nearest store, or ask our experts any questions. 130+ locations across the US, Canada, and UK."
+  keywords="contact metal supermarkets, metal quote, find metal store, metal supplier near me"
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="contact-hero">
+      <div class="contact-hero-bg"></div>
+      <div class="container">
+        <div class="contact-hero-inner">
+          <span class="section-label">Get In Touch</span>
+          <div class="divider"></div>
+          <h1 class="display-xl">
+            We're Here<br />
+            <span class="text-red">to Help.</span>
+          </h1>
+          <p class="contact-hero-sub">
+            Request a quote, find a store, or just ask a question.
+            Our team of metal experts is ready to help.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Grid -->
+    <section class="contact-main">
+      <div class="container contact-main-grid">
+
+        <!-- Quote Form -->
+        <div class="contact-form-wrap reveal-left">
+          <div class="contact-form-header">
+            <h2 class="display-md" style="margin-bottom: 8px;">Request a Quote</h2>
+            <p class="contact-form-sub">Fill out the form and we'll get back to you within the hour.</p>
+          </div>
+
+          <form class="quote-form" id="quoteForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name *</label>
+                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="metalType">Metal Type *</label>
+              <select class="form-input form-select" id="metalType" name="metalType" required>
+                <option value="">Select a metal type...</option>
+                <option>Carbon Steel</option>
+                <option>Stainless Steel</option>
+                <option>Alloy Steel</option>
+                <option>Tool Steel</option>
+                <option>Aluminum</option>
+                <option>Copper</option>
+                <option>Brass</option>
+                <option>Bronze</option>
+                <option>Titanium</option>
+                <option>Specialty Alloy</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="shape">Shape / Form</label>
+                <select class="form-input form-select" id="shape" name="shape">
+                  <option value="">Select shape...</option>
+                  <option>Bar / Rod</option>
+                  <option>Sheet</option>
+                  <option>Plate</option>
+                  <option>Tube</option>
+                  <option>Pipe</option>
+                  <option>Angle</option>
+                  <option>Channel</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="quantity">Quantity</label>
+                <input class="form-input" type="text" id="quantity" name="quantity" placeholder="e.g. 10 pieces" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="dimensions">Dimensions / Specifications</label>
+              <input class="form-input" type="text" id="dimensions" name="dimensions" placeholder='e.g. 1" x 1" x 24"' />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Additional Notes</label>
+              <textarea class="form-input form-textarea" id="message" name="message" placeholder="Any specific requirements, tolerances, or questions..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              Submit Quote Request
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <p class="form-note">
+              By submitting this form you agree to our
+              <a href="/privacy">Privacy Policy</a>.
+              We'll never share your information.
+            </p>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info reveal-right">
+          <!-- Phone CTA -->
+          <div class="contact-card contact-card--phone">
+            <div class="contact-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.08 19.79 19.79 0 01.01 4.5 2 2 0 012 2.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 10.1a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-card-label">Call Us Now</div>
+              <a href="tel:1-888-317-9980" class="contact-card-value">1-888-317-9980</a>
+              <div class="contact-card-sub">Mon–Fri 8am–5pm local time</div>
+            </div>
+          </div>
+
+          <!-- Locations -->
+          <div class="contact-regions">
+            <h3 class="contact-regions-title">Our Regions</h3>
+            {offices.map((office) => (
+              <div class="region-card">
+                <div class="region-header">
+                  <div class="region-name">{office.region}</div>
+                  <div class="region-count">{office.count} stores</div>
+                </div>
+                <div class="region-desc">{office.desc}</div>
+                <div class="region-cities">
+                  {office.cities.slice(0, 6).map((c) => (
+                    <span class="region-city">{c}</span>
+                  ))}
+                  {office.cities.length > 6 && <span class="region-city">+more</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Find store CTA -->
+          <a href="/locations" class="find-store-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div>
+              <div class="find-store-label">Find Your Nearest Store</div>
+              <div class="find-store-sub">Enter your city or ZIP code</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: auto">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">FAQ</span>
+          <div class="divider"></div>
+          <h2 class="display-md" style="margin-bottom: 48px;">Common Questions</h2>
+        </div>
+        <div class="faq-grid">
+          {faqs.map((faq, i) => (
+            <div class={`faq-card reveal delay-${Math.min(i + 1, 6)}`}>
+              <div class="faq-q">{faq.q}</div>
+              <div class="faq-a">{faq.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.text-red { color: var(--blue); }
+
+/* Hero */
+.contact-hero {
+  position: relative;
+  padding: calc(72px + 80px) 0 80px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.contact-hero-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 60% 80% at 30% 50%, black 40%, transparent 100%);
+}
+
+.contact-hero-inner { position: relative; z-index: 2; max-width: 700px; }
+
+h1.display-xl { animation: slideInLeft 0.9s var(--ease-out) 0.3s both; }
+
+.contact-hero-sub {
+  font-family: var(--font-light); font-size: 17px;
+  color: var(--text-secondary); line-height: 1.7; max-width: 480px;
+  animation: fadeInUp 0.9s var(--ease-out) 0.5s both;
+  margin-top: 20px;
+}
+
+/* Main Grid */
+.contact-main {
+  padding: var(--section-pad) 0;
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+}
+
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .contact-main-grid { grid-template-columns: 1fr; }
+}
+
+/* Form */
+.contact-form-header { margin-bottom: 32px; }
+
+.contact-form-sub {
+  font-family: var(--font-light);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-light);
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.form-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+}
+
+.form-input::placeholder { color: var(--text-muted); }
+
+.form-select { cursor: pointer; }
+.form-select option { background: var(--surface-2); }
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-submit {
+  padding: 16px 32px;
+  width: 100%;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.form-note {
+  font-family: var(--font-light);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.form-note a { color: var(--blue); }
+
+/* Contact Info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-card {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+}
+
+.contact-card:hover { border-color: var(--blue); }
+
+.contact-card--phone { border-top: 2px solid var(--blue); }
+
+.contact-card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(21,101,192,0.08);
+  border: 1px solid rgba(21,101,192,0.2);
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.contact-card-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.contact-card-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.contact-card-value:hover { color: var(--blue); }
+
+.contact-card-sub {
+  font-family: var(--font-light);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Regions */
+.contact-regions { display: flex; flex-direction: column; gap: 8px; }
+
+.contact-regions-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.region-card {
+  padding: 16px 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.region-card:hover { border-color: var(--border-light); }
+
+.region-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.region-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.region-count {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.region-desc {
+  font-family: var(--font-light);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.region-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.region-city {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Find Store Button */
+.find-store-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--blue);
+  border: none;
+  color: white;
+  transition: all 0.25s;
+}
+
+.find-store-btn:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--blue-glow);
+}
+
+.find-store-label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.find-store-sub {
+  font-family: var(--font-light);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* FAQ */
+.faq-section {
+  padding: var(--section-pad) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+@media (max-width: 768px) {
+  .faq-grid { grid-template-columns: 1fr; }
+}
+
+.faq-card {
+  padding: 28px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+}
+
+.faq-card:hover {
+  background: var(--surface-2);
+  border-left-color: var(--blue);
+}
+
+.faq-q {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.faq-a {
+  font-family: var(--font-light);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+</style>
+
+<script>
+  document.getElementById('quoteForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = (e.currentTarget as HTMLFormElement)?.querySelector('.form-submit') as HTMLButtonElement;
+    if (btn) {
+      btn.textContent = '✓ Request Sent!';
+      btn.style.background = '#166534';
+      btn.disabled = true;
+    }
+  });
+</script>

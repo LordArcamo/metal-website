@@ -1,0 +1,360 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Get a Free Quote"
+  description="Request a free metal quote from Metal Supermarkets. Tell us your material, grade, shape, and size — and we'll get back to you fast. No minimum orders."
+  keywords="metal quote, free metal quote, buy metal online, steel quote, aluminum quote"
+>
+  <Header />
+  <main>
+    <section class="quote-page">
+      <div class="quote-page-bg"></div>
+      <div class="container">
+        <div class="quote-page-inner">
+          <!-- Left: Info -->
+          <div class="quote-info reveal-left">
+            <span class="section-label">Free Quote</span>
+            <div class="divider"></div>
+            <h1 class="display-lg quote-heading">
+              Tell Us<br />
+              What You<br />
+              <span class="text-red">Need.</span>
+            </h1>
+            <p class="quote-sub">
+              Our team of metal experts will review your request and
+              respond with a competitive quote — fast.
+            </p>
+
+            <div class="quote-promises">
+              {[
+                "Response within the hour",
+                "Competitive pricing guaranteed",
+                "No minimum order required",
+                "Cut-to-size available",
+                "Same-day pickup or fast delivery",
+              ].map((p) => (
+                <div class="quote-promise">
+                  <span class="promise-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                  </span>
+                  {p}
+                </div>
+              ))}
+            </div>
+
+            <div class="quote-phone">
+              <div class="quote-phone-label">Prefer to call?</div>
+              <a href="tel:1-888-317-9980" class="quote-phone-number">
+                1-888-317-9980
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Form -->
+          <div class="quote-form-wrap reveal-right">
+            <div class="quote-form-box">
+              <div class="quote-form-box-header">
+                <h2 class="quote-form-title">Request a Quote</h2>
+                <p class="quote-form-sub">All fields marked * are required</p>
+              </div>
+
+              <form class="qform" id="mainQuoteForm" novalidate>
+                <div class="qform-row">
+                  <div class="qform-group">
+                    <label class="qform-label">First Name *</label>
+                    <input class="qform-input" type="text" name="firstName" placeholder="John" required />
+                  </div>
+                  <div class="qform-group">
+                    <label class="qform-label">Last Name *</label>
+                    <input class="qform-input" type="text" name="lastName" placeholder="Smith" required />
+                  </div>
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Email *</label>
+                  <input class="qform-input" type="email" name="email" placeholder="john@company.com" required />
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Phone</label>
+                  <input class="qform-input" type="tel" name="phone" placeholder="(555) 000-0000" />
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Company / Organization</label>
+                  <input class="qform-input" type="text" name="company" placeholder="Your Company LLC" />
+                </div>
+
+                <div class="qform-divider">
+                  <span>Metal Specifications</span>
+                </div>
+
+                <div class="qform-row">
+                  <div class="qform-group">
+                    <label class="qform-label">Metal Type *</label>
+                    <select class="qform-input qform-select" name="metalType" required>
+                      <option value="">Select metal...</option>
+                      <option>Carbon Steel</option>
+                      <option>Stainless Steel</option>
+                      <option>Alloy Steel</option>
+                      <option>Tool Steel</option>
+                      <option>Aluminum</option>
+                      <option>Copper</option>
+                      <option>Brass</option>
+                      <option>Bronze</option>
+                      <option>Titanium</option>
+                      <option>Inconel</option>
+                      <option>Other / Not Sure</option>
+                    </select>
+                  </div>
+                  <div class="qform-group">
+                    <label class="qform-label">Grade / Alloy</label>
+                    <input class="qform-input" type="text" name="grade" placeholder="e.g. 304, 6061, A36" />
+                  </div>
+                </div>
+
+                <div class="qform-row">
+                  <div class="qform-group">
+                    <label class="qform-label">Shape / Form *</label>
+                    <select class="qform-input qform-select" name="shape" required>
+                      <option value="">Select shape...</option>
+                      <option>Bar / Round Bar</option>
+                      <option>Flat Bar</option>
+                      <option>Hex Bar</option>
+                      <option>Sheet</option>
+                      <option>Plate</option>
+                      <option>Tube (Square/Rect)</option>
+                      <option>Tube (Round)</option>
+                      <option>Pipe</option>
+                      <option>Angle</option>
+                      <option>Channel</option>
+                      <option>I-Beam</option>
+                      <option>Diamond Plate</option>
+                      <option>Expanded Metal</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="qform-group">
+                    <label class="qform-label">Quantity *</label>
+                    <input class="qform-input" type="text" name="quantity" placeholder="e.g. 5 pieces" required />
+                  </div>
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Dimensions (L × W × H or OD × WT)</label>
+                  <input class="qform-input" type="text" name="dimensions" placeholder='e.g. 24" × 2" × 1/4"' />
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Delivery Preference</label>
+                  <select class="qform-input qform-select" name="delivery">
+                    <option value="">Select option...</option>
+                    <option>Store pickup</option>
+                    <option>Local delivery</option>
+                    <option>Nationwide shipping</option>
+                  </select>
+                </div>
+
+                <div class="qform-group">
+                  <label class="qform-label">Additional Requirements</label>
+                  <textarea class="qform-input qform-textarea" name="notes" placeholder="Special tolerances, certifications, finishing requirements..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary qform-submit">
+                  Submit Quote Request
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.text-red { color: var(--blue); }
+
+.quote-page {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(72px + 60px) 0 80px;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.quote-page-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 60% 80% at 70% 50%, black 40%, transparent 100%);
+}
+
+.quote-page-inner {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .quote-page-inner { grid-template-columns: 1fr; }
+}
+
+/* Info */
+.quote-info { position: sticky; top: 100px; }
+@media (max-width: 1024px) { .quote-info { position: static; } }
+
+.quote-heading { margin-bottom: 16px; line-height: 1; }
+.quote-sub {
+  font-family: var(--font-light); font-size: 15px;
+  color: var(--text-secondary); line-height: 1.7;
+  max-width: 380px; margin-bottom: 32px;
+}
+
+.quote-promises {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.quote-promise {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.promise-check {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(21,101,192,0.1);
+  border: 1px solid rgba(21,101,192,0.3);
+  border-radius: 2px;
+  color: var(--blue);
+}
+
+.quote-phone {
+  padding: 20px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+}
+
+.quote-phone-label {
+  font-family: var(--font-display); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 6px;
+}
+
+.quote-phone-number {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 28px; color: var(--text-primary);
+  letter-spacing: 0.03em; transition: color 0.2s;
+}
+
+.quote-phone-number:hover { color: var(--blue); }
+
+/* Form Box */
+.quote-form-box {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--blue);
+  overflow: hidden;
+}
+
+.quote-form-box-header {
+  padding: 28px 32px 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+  margin-bottom: 0;
+}
+
+.quote-form-title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 22px; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.quote-form-sub {
+  font-family: var(--font-light); font-size: 13px; color: var(--text-muted);
+}
+
+.qform {
+  padding: 24px 32px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.qform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .qform-row { grid-template-columns: 1fr; } }
+
+.qform-group { display: flex; flex-direction: column; gap: 6px; }
+
+.qform-label {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);
+}
+
+.qform-input {
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-primary); font-family: var(--font-light);
+  font-size: 14px; padding: 12px 16px; border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+  width: 100%; -webkit-appearance: none;
+}
+
+.qform-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+}
+
+.qform-input::placeholder { color: var(--text-muted); }
+.qform-select { cursor: pointer; }
+.qform-select option { background: var(--surface-2); }
+.qform-textarea { resize: vertical; min-height: 80px; }
+
+.qform-divider {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue);
+  margin: 4px 0;
+}
+
+.qform-divider::before, .qform-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.qform-submit {
+  width: 100%; justify-content: center; padding: 18px;
+}
+</style>
+
+<script>
+  document.getElementById('mainQuoteForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = document.querySelector('.qform-submit') as HTMLButtonElement;
+    if (btn) {
+      btn.innerHTML = '✓ Quote Request Sent!';
+      btn.style.background = '#166534';
+      btn.disabled = true;
+    }
+  });
+</script>

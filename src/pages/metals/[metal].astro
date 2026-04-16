@@ -1,0 +1,509 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  const metals = [
+    {
+      slug: "carbon-steel",
+      name: "Carbon Steel",
+      tagline: "The Backbone of Modern Industry",
+      desc: "Carbon steel is the most widely used of all metals — versatile, economical, and available in a vast range of grades and shapes. The carbon content ranges from 0.06% to 1.0%, with higher carbon increasing hardness and strength while reducing weldability.",
+      grades: [
+        { grade: "A36", desc: "Low carbon structural steel. Excellent weldability and formability. The most common structural steel in North America.", applications: "Structural components, bridges, buildings, general fabrication" },
+        { grade: "1018", desc: "Cold drawn, low carbon steel. Excellent machinability, weldability, and surface quality.", applications: "Precision shafts, gears, pins, bushings, machined parts" },
+        { grade: "1045", desc: "Medium carbon steel with improved strength over 1018. Heat treatable for increased hardness.", applications: "Gears, axles, shafts, bolts, studs, machine parts" },
+        { grade: "4140", desc: "Chromium-molybdenum alloy steel. Exceptional toughness, fatigue strength, and hardenability.", applications: "Gears, shafts, automotive parts, tooling, die casting" },
+        { grade: "1144", desc: "Resulfurized free-machining steel. Up to 2× the machinability of 1045.", applications: "Automatic screw machine parts, fasteners, high-speed machining" },
+        { grade: "4130", desc: "Chrome-moly steel. Excellent weldability, toughness, and strength-to-weight ratio.", applications: "Aerospace, motorsport frames, high-strength tubing, hydraulic parts" },
+      ],
+      shapes: ["Flat Bar", "Round Bar", "Square Bar", "Hex Bar", "Angle", "Channel", "I-Beam", "Wide Flange", "Sheet", "Plate", "Round Tube", "Square Tube", "Rect Tube", "Pipe"],
+      properties: [
+        { label: "Density", value: "7.85 g/cm³" },
+        { label: "Yield Strength", value: "250–600 MPa" },
+        { label: "Tensile Strength", value: "400–700 MPa" },
+        { label: "Melting Point", value: "1,425–1,540°C" },
+        { label: "Weldability", value: "Excellent (low C)" },
+        { label: "Machinability", value: "Good to Excellent" },
+      ],
+      seoDesc: "Buy carbon steel cut to size. A36, 1018, 1045, 4140 and more. Same-day service at 130+ locations across the US, Canada & UK.",
+    },
+    {
+      slug: "stainless-steel",
+      name: "Stainless Steel",
+      tagline: "Corrosion Resistance. Strength. Longevity.",
+      desc: "Stainless steel contains a minimum of 10.5% chromium, which forms a passive oxide layer that provides exceptional corrosion resistance. Available in austenitic, ferritic, martensitic, and precipitation hardening grades for every application.",
+      grades: [
+        { grade: "304", desc: "The most common stainless steel. Excellent corrosion resistance in most environments. Non-magnetic in annealed condition.", applications: "Food equipment, kitchen hardware, chemical containers, architectural" },
+        { grade: "316 / 316L", desc: "Contains molybdenum for superior chloride and acid resistance. The marine-grade stainless.", applications: "Marine hardware, medical devices, chemical processing, coastal architecture" },
+        { grade: "410", desc: "Martensitic stainless. Hardenable by heat treatment. Good corrosion resistance in mild environments.", applications: "Cutlery, valves, pump parts, fasteners, turbine blades" },
+        { grade: "416", desc: "Most machinable of the stainless grades. Free-machining with phosphorus and sulfur additions.", applications: "Automatic screw machine parts, gears, shafts, valve components" },
+        { grade: "17-4 PH", desc: "Precipitation hardening grade with very high strength and hardness after aging treatment.", applications: "Aerospace fasteners, gears, shafts, turbine blades, nuclear reactor components" },
+        { grade: "440C", desc: "Highest hardness of all stainless grades when heat treated. Excellent wear resistance.", applications: "Bearings, valve seats, cutting instruments, surgical tools, pump components" },
+      ],
+      shapes: ["Sheet", "Plate", "Round Bar", "Flat Bar", "Square Bar", "Hex Bar", "Angle", "Channel", "Round Tube", "Rect Tube", "Pipe", "Threaded Rod"],
+      properties: [
+        { label: "Density", value: "7.90–8.00 g/cm³" },
+        { label: "Yield Strength", value: "170–1,170 MPa" },
+        { label: "Tensile Strength", value: "480–1,310 MPa" },
+        { label: "Melting Point", value: "1,370–1,530°C" },
+        { label: "Corrosion Resistance", value: "Excellent" },
+        { label: "Magnetic", value: "304: No / 410: Yes" },
+      ],
+      seoDesc: "Buy stainless steel cut to size. 304, 316, 410, 17-4 PH, 440C and more. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "aluminum",
+      name: "Aluminum",
+      tagline: "Light Weight. High Strength. Unmatched Versatility.",
+      desc: "Aluminum is one-third the weight of steel with excellent corrosion resistance and strength-to-weight ratio. Available in dozens of alloys covering applications from food packaging to aerospace structures.",
+      grades: [
+        { grade: "6061-T6", desc: "The most versatile aluminum alloy. Excellent strength, weldability, and corrosion resistance in T6 temper.", applications: "Structural parts, marine fittings, aircraft structures, automotive components" },
+        { grade: "3003", desc: "Most widely used aluminum alloy. Excellent workability, corrosion resistance, and weldability.", applications: "Chemical equipment, sheet metal work, cooking utensils, gutters, storage tanks" },
+        { grade: "5052", desc: "Highest strength of non-heat-treatable alloys. Excellent fatigue strength and marine corrosion resistance.", applications: "Marine hardware, fuel tanks, pressure vessels, highway signs" },
+        { grade: "7075-T6", desc: "Among the highest strength aluminum alloys. Comparable to mild steel. Aerospace critical.", applications: "Aircraft structural components, missile parts, gears, shafts, high-stress parts" },
+        { grade: "2024", desc: "High strength-to-weight ratio with good machinability. The classic aerospace structural alloy.", applications: "Aircraft skin, structures, rivets, aerospace bolts, screw machine products" },
+        { grade: "6063", desc: "The architectural alloy. Excellent finish characteristics and corrosion resistance for anodizing.", applications: "Architectural extrusions, window frames, door frames, furniture, pipe railings" },
+      ],
+      shapes: ["Sheet", "Plate", "Tread Plate", "Round Bar", "Flat Bar", "Square Bar", "Hex Bar", "Angle", "Channel", "Round Tube", "Square Tube", "Rectangular Tube", "Pipe", "I-Beam"],
+      properties: [
+        { label: "Density", value: "2.70 g/cm³" },
+        { label: "Yield Strength", value: "75–500 MPa" },
+        { label: "Tensile Strength", value: "180–570 MPa" },
+        { label: "Melting Point", value: "570–660°C" },
+        { label: "Corrosion Resistance", value: "Excellent" },
+        { label: "Weight vs Steel", value: "1/3 the weight" },
+      ],
+      seoDesc: "Buy aluminum cut to size. 6061, 5052, 7075, 3003, 2024, 6063 and more. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "copper",
+      name: "Copper",
+      tagline: "Highest Conductivity. Essential Everywhere.",
+      desc: "Copper is the benchmark for electrical and thermal conductivity, surpassed only by silver. With excellent corrosion resistance, solderability, and formability, it's essential in electrical, plumbing, HVAC, and industrial applications.",
+      grades: [
+        { grade: "C110 (ETP)", desc: "Electrolytic Tough Pitch copper. 99.9% pure. Standard electrical-grade copper. Highest conductivity.", applications: "Bus bars, commutators, electrical conductors, heat exchangers, welding fixtures" },
+        { grade: "C101 (OFE)", desc: "Oxygen-Free Electronic grade. 99.99% pure. Highest conductivity, no hydrogen embrittlement.", applications: "Waveguides, microwave components, electron tubes, plasma equipment, semiconductor equipment" },
+        { grade: "C145 (Tellurium)", desc: "Free-machining copper. Tellurium addition dramatically improves machinability while retaining conductivity.", applications: "Electrical connectors, switches, relays, screw machine products" },
+      ],
+      shapes: ["Sheet", "Plate", "Round Bar", "Flat Bar", "Square Bar", "Round Tube"],
+      properties: [
+        { label: "Density", value: "8.94 g/cm³" },
+        { label: "Electrical Conductivity", value: "100% IACS" },
+        { label: "Thermal Conductivity", value: "385 W/m·K" },
+        { label: "Tensile Strength", value: "220–340 MPa" },
+        { label: "Melting Point", value: "1,085°C" },
+        { label: "Corrosion Resistance", value: "Excellent" },
+      ],
+      seoDesc: "Buy copper cut to size. C110, C101, C145 tellurium copper. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "brass",
+      name: "Brass",
+      tagline: "The Machinist's Metal. Beautiful. Machinable.",
+      desc: "Brass is an alloy of copper and zinc, offering an excellent combination of machinability, corrosion resistance, and attractive appearance. From free-machining C360 to high-ductility C260, there's a brass for every application.",
+      grades: [
+        { grade: "C360 (Free-Machining)", desc: "The most machinable of all copper alloys — up to 4× more machinable than pure copper. Lead addition enables excellent chip formation.", applications: "Precision screw machine parts, fittings, valves, gears, fasteners, keys" },
+        { grade: "C260 (Cartridge)", desc: "Highest ductility in the yellow brass series. Cold-workable without annealing. Excellent deep drawing capability.", applications: "Ammunition casings, plumbing, radiator cores, sheet metal forming, locks" },
+        { grade: "C464 (Naval Brass)", desc: "Tin addition enhances corrosion resistance in seawater. The premier marine brass.", applications: "Marine hardware, condenser tubes, propeller shafts, pump shafts, valve stems" },
+      ],
+      shapes: ["Round Bar", "Flat Bar", "Square Bar", "Hex Bar", "Sheet", "Plate", "Round Tube", "Rectangular Tube"],
+      properties: [
+        { label: "Density", value: "8.47–8.73 g/cm³" },
+        { label: "Tensile Strength", value: "330–520 MPa" },
+        { label: "Yield Strength", value: "95–310 MPa" },
+        { label: "Melting Point", value: "900–940°C" },
+        { label: "Machinability", value: "Excellent (C360: 100%)" },
+        { label: "Corrosion Resistance", value: "Good to Excellent" },
+      ],
+      seoDesc: "Buy brass cut to size. C360, C260, C464 naval brass. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "bronze",
+      name: "Bronze",
+      tagline: "Wear-Resistant. Self-Lubricating. Proven.",
+      desc: "Bronze alloys — copper with tin, aluminum, or other elements — offer exceptional wear resistance, high load capacity, and in many grades, self-lubricating properties. The material of choice for bearings, bushings, and high-load mechanical applications.",
+      grades: [
+        { grade: "C932 (SAE 660)", desc: "Bearing Bronze. The most commonly used bronze in bushing and bearing applications. Low friction, long service life.", applications: "Bushings, bearings, sleeve bearings, thrust washers, pump components" },
+        { grade: "C954 (Aluminum Bronze)", desc: "High strength and excellent corrosion resistance. Tarnish resistant in atmospheric conditions, low oxidation at high temperatures.", applications: "Heavy load bushings, marine hardware, pump bodies, valve bodies, aerospace" },
+        { grade: "C220 (Commercial Bronze)", desc: "90% copper, 10% zinc. Excellent ductility and corrosion resistance with attractive reddish-gold color.", applications: "Architectural hardware, builder's hardware, decorative applications, medallions" },
+      ],
+      shapes: ["Round Bar", "Flat Bar", "Square Bar", "Round Tube"],
+      properties: [
+        { label: "Density", value: "8.16–8.83 g/cm³" },
+        { label: "Tensile Strength", value: "275–585 MPa" },
+        { label: "Yield Strength", value: "140–345 MPa" },
+        { label: "Melting Point", value: "850–1,045°C" },
+        { label: "Wear Resistance", value: "Excellent" },
+        { label: "Self-Lubricating", value: "Yes (C932)" },
+      ],
+      seoDesc: "Buy bronze cut to size. C932 bearing bronze, C954 aluminum bronze. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "tool-steel",
+      name: "Tool Steel",
+      tagline: "Maximum Hardness. Precise. Uncompromising.",
+      desc: "Tool steels are high-carbon, high-alloy steels specifically engineered for the manufacture of tools, dies, and molds. They are characterized by exceptional hardness, wear resistance, and the ability to maintain a sharp cutting edge under severe service conditions.",
+      grades: [
+        { grade: "A2", desc: "Air-hardening tool steel. 1% C, 5% Cr. Excellent combination of hardness, toughness, and wear resistance with minimal distortion.", applications: "Punches, dies, form tools, trim dies, plastic injection molds, gauges" },
+        { grade: "D2", desc: "High-chromium die steel. 12% Cr gives excellent wear resistance. High hardness (60–62 HRC achievable).", applications: "Long-run forming dies, blanking dies, slitters, thread rolling dies, knives" },
+        { grade: "O1", desc: "General purpose oil-hardening steel. Excellent machinability in annealed state. Good wear resistance.", applications: "Taps, reamers, dies, gauges, knives, general tooling" },
+        { grade: "H13", desc: "Hot work die steel. Excellent thermal fatigue resistance. The standard for high-temperature applications.", applications: "Die casting dies, forging dies, hot extrusion, mandrels, hot shear blades" },
+        { grade: "M2", desc: "The most widely used high speed steel. Retains hardness at elevated temperatures during cutting.", applications: "Drill bits, end mills, taps, reamers, hobs, broaches, form tools" },
+        { grade: "W1", desc: "Water-hardening tool steel. Excellent surface hardness with tougher core when properly treated.", applications: "Files, drills for light use, engravers, cold chisels, woodworking tools" },
+      ],
+      shapes: ["Round Bar", "Flat Bar", "Square Bar", "Plate", "Drill Rod", "Ground Flat Stock", "Ground Square Stock"],
+      properties: [
+        { label: "Hardness (HRC)", value: "58–66 HRC (hardened)" },
+        { label: "Wear Resistance", value: "Excellent to Superior" },
+        { label: "Toughness", value: "Good (varies by grade)" },
+        { label: "Heat Treatment", value: "Required" },
+        { label: "Machinability", value: "Good (annealed)" },
+        { label: "Working Temp.", value: "To 540°C (hot work)" },
+      ],
+      seoDesc: "Buy tool steel cut to size. A2, D2, O1, H13, M2, W1. Decarb-free. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "titanium",
+      name: "Titanium",
+      tagline: "Aerospace Strength. Featherlight Weight.",
+      desc: "Titanium offers an extraordinary combination of high strength, low density, and exceptional corrosion resistance that no other metal can match at the same weight. Used in the most demanding applications from jet engines to medical implants.",
+      grades: [
+        { grade: "Grade 2 (CP)", desc: "Commercially pure titanium. Excellent corrosion resistance, good weldability, moderate strength.", applications: "Chemical processing equipment, marine applications, medical devices, heat exchangers" },
+        { grade: "Grade 5 (Ti-6Al-4V)", desc: "The workhorse of titanium alloys. 6% Al, 4% V. The highest strength-to-weight ratio in common use.", applications: "Aerospace structures, jet engine components, medical implants, motorsport, defense" },
+        { grade: "Grade 23 (Ti-6Al-4V ELI)", desc: "Extra Low Interstitials. Superior fracture toughness and biocompatibility for surgical implants.", applications: "Orthopedic implants, surgical instruments, cardiac devices, dental implants" },
+      ],
+      shapes: ["Round Bar", "Flat Bar", "Sheet", "Plate", "Round Tube"],
+      properties: [
+        { label: "Density", value: "4.51 g/cm³" },
+        { label: "Yield Strength", value: "275–1,100 MPa" },
+        { label: "Tensile Strength", value: "345–1,170 MPa" },
+        { label: "Melting Point", value: "1,668°C" },
+        { label: "Weight vs Steel", value: "57% of steel weight" },
+        { label: "Biocompatible", value: "Yes" },
+      ],
+      seoDesc: "Buy titanium cut to size. Grade 2, Ti-6Al-4V (Grade 5), Grade 23 ELI. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "alloy-steel",
+      name: "Alloy Steel",
+      tagline: "Engineered for Performance.",
+      desc: "Alloy steels have been enhanced with specific alloying elements — chromium, molybdenum, vanadium, nickel — to achieve targeted improvements in strength, hardenability, toughness, and wear resistance beyond what plain carbon steel can deliver.",
+      grades: [
+        { grade: "4140", desc: "Chrome-molybdenum alloy. Excellent strength, fatigue resistance, and hardenability. The most versatile alloy steel.", applications: "Gears, shafts, hydraulic shafts, forged parts, automotive axles, oil field equipment" },
+        { grade: "4340", desc: "Nickel-chromium-molybdenum. Very high strength with excellent toughness. Aircraft and defense critical.", applications: "Aircraft landing gear, structural aircraft parts, high-strength bolts, firearms" },
+        { grade: "4130", desc: "Chrome-moly with excellent weldability. The classic aerospace and motorsport frame material.", applications: "Aircraft structures, race car frames, high-strength tubes, hydraulic tubing" },
+        { grade: "8620", desc: "Case-hardening alloy. Tough core with hard case. Excellent for carburizing.", applications: "Gears, ring gears, camshafts, pins, chain components" },
+        { grade: "52100", desc: "High carbon chromium bearing steel. Extremely hard and wear-resistant when heat treated.", applications: "Bearings, bearing races, high-precision tooling, rollers" },
+      ],
+      shapes: ["Round Bar", "Flat Bar", "Square Bar", "Hex Bar", "Plate", "Round Tube", "Pipe"],
+      properties: [
+        { label: "Density", value: "7.85 g/cm³" },
+        { label: "Yield Strength", value: "415–1,170 MPa" },
+        { label: "Tensile Strength", value: "655–1,310 MPa" },
+        { label: "Hardness", value: "To 60 HRC (treated)" },
+        { label: "Hardenability", value: "Excellent" },
+        { label: "Toughness", value: "Good to Excellent" },
+      ],
+      seoDesc: "Buy alloy steel cut to size. 4140, 4340, 4130, 8620, 52100. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "hot-rolled-steel",
+      name: "Hot Rolled Steel",
+      tagline: "Structural Strength. Every Shape.",
+      desc: "Hot rolled steel is produced at temperatures above the recrystallization point (~1,700°F), making it easy to form into large structural shapes. The standard material for structural construction, general fabrication, and where surface finish is secondary to strength and economy.",
+      grades: [
+        { grade: "A36", desc: "The universal structural steel. Minimum 36 ksi yield strength. Excellent weldability.", applications: "Structural frames, bridges, machinery, supports, general fabrication" },
+        { grade: "A572 Grade 50", desc: "High-strength low-alloy. 50 ksi minimum yield. Stronger than A36 at the same weight.", applications: "Structural beams, columns, bridges, heavy equipment, cranes" },
+        { grade: "A992", desc: "Specifically designed for wide-flange beams. Superior for structural steel applications.", applications: "Building frames, wide-flange columns and beams" },
+      ],
+      shapes: ["Angle", "Channel (C)", "I-Beam (S)", "Wide Flange (W)", "Flat Bar", "Round Bar", "Square Bar", "Sheet", "Plate", "Floor Plate"],
+      properties: [
+        { label: "Density", value: "7.85 g/cm³" },
+        { label: "Yield Strength", value: "250–345 MPa" },
+        { label: "Tensile Strength", value: "400–550 MPa" },
+        { label: "Surface Finish", value: "Mill scale (rough)" },
+        { label: "Weldability", value: "Excellent" },
+        { label: "Cost", value: "Most economical" },
+      ],
+      seoDesc: "Buy hot rolled steel cut to size. A36, A572, angle, channel, I-beam, wide flange, sheet, plate. Same-day service.",
+    },
+    {
+      slug: "cold-rolled-steel",
+      name: "Cold Rolled Steel",
+      tagline: "Tighter Tolerances. Smoother Finish.",
+      desc: "Cold rolled steel is processed below the recrystallization temperature, resulting in tighter dimensional tolerances, smoother surface finish, and increased yield strength compared to hot rolled. The choice for precision parts, sheet metal work, and applications requiring a clean surface.",
+      grades: [
+        { grade: "1018", desc: "Low carbon. Good machinability, excellent weldability, and clean surface finish. The most common cold drawn bar.", applications: "Shafts, pins, keys, precision parts, hydraulic shafts, machined components" },
+        { grade: "1008", desc: "Ultra-low carbon. Maximum ductility and formability for deep drawing and stamping applications.", applications: "Sheet metal parts, enclosures, deep drawn components, automotive panels" },
+        { grade: "1020", desc: "Slightly higher carbon than 1018. Improved strength with good machinability.", applications: "General machined parts, bolts, studs, rods, structural applications" },
+      ],
+      shapes: ["Sheet", "Strip", "Flat Bar", "Round Bar", "Square Bar"],
+      properties: [
+        { label: "Density", value: "7.85 g/cm³" },
+        { label: "Yield Strength", value: "300–450 MPa" },
+        { label: "Tensile Strength", value: "400–550 MPa" },
+        { label: "Surface Finish", value: "Smooth, bright" },
+        { label: "Tolerances", value: "±0.005\" typ." },
+        { label: "vs Hot Rolled", value: "+20% stronger" },
+      ],
+      seoDesc: "Buy cold rolled steel cut to size. 1018, 1008, 1020 sheet, bar, strip. Same-day service at 130+ locations.",
+    },
+    {
+      slug: "nickel-alloys",
+      name: "Nickel Alloys",
+      tagline: "Where Other Metals Fail.",
+      desc: "Nickel-based superalloys are engineered for the most extreme environments on Earth — and beyond. Whether facing temperatures above 1,000°C, corrosive acids, or extreme pressure, these alloys maintain their mechanical properties where all other metals have long since failed.",
+      grades: [
+        { grade: "Inconel 625", desc: "Nickel-chromium-molybdenum alloy. Exceptional corrosion and oxidation resistance. No heat treatment required.", applications: "Aerospace components, chemical processing, marine applications, nuclear reactors" },
+        { grade: "Inconel 718", desc: "Precipitation hardened. Outstanding strength and corrosion resistance to 704°C.", applications: "Jet engine discs and blades, spacecraft, nuclear fuel elements, pumps, tooling" },
+        { grade: "Hastelloy C-276", desc: "Superior resistance to pitting, crevice corrosion, and stress corrosion cracking in aggressive media.", applications: "Chemical processing, pollution control, pulp & paper, acid production" },
+        { grade: "Monel 400", desc: "Nickel-copper alloy. Excellent strength and corrosion resistance in seawater and acids.", applications: "Marine engineering, offshore oil & gas, valves, pumps, heat exchangers" },
+        { grade: "Nickel 200", desc: "Commercially pure nickel (99.6%). Excellent mechanical and electronic properties.", applications: "Chemical processing, food handling, caustic soda, electronics, electroforming" },
+      ],
+      shapes: ["Round Bar", "Sheet", "Plate", "Round Tube"],
+      properties: [
+        { label: "Density", value: "8.19–8.90 g/cm³" },
+        { label: "Tensile Strength", value: "480–1,380 MPa" },
+        { label: "Max Service Temp", value: "To 1,093°C" },
+        { label: "Corrosion Resist.", value: "Superior" },
+        { label: "Weldability", value: "Good" },
+        { label: "Cost vs Steel", value: "5–20× premium" },
+      ],
+      seoDesc: "Buy nickel alloys cut to size. Inconel 625, 718, Hastelloy C276, Monel 400. Same-day service at 130+ locations.",
+    },
+  ];
+
+  return metals.map((m) => ({
+    params: { metal: m.slug },
+    props: { metal: m },
+  }));
+}
+
+const { metal } = Astro.props;
+---
+
+<Layout
+  title={`${metal.name} — Grades, Shapes & Cut-to-Size`}
+  description={metal.seoDesc}
+  keywords={`${metal.name.toLowerCase()}, ${metal.grades.map(g => g.grade.toLowerCase()).join(', ')}, cut to size ${metal.name.toLowerCase()}, metal supplier`}
+>
+  <Header />
+  <main>
+
+    <!-- Breadcrumb + hero -->
+    <section class="metal-page-hero">
+      <div class="metal-page-bg"></div>
+      <div class="container">
+        <div class="metal-breadcrumb">
+          <a href="/" class="metal-breadcrumb-link">Home</a>
+          <span class="metal-breadcrumb-sep">›</span>
+          <a href="/metals" class="metal-breadcrumb-link">Metals</a>
+          <span class="metal-breadcrumb-sep">›</span>
+          <span class="metal-breadcrumb-current">{metal.name}</span>
+        </div>
+        <div class="metal-page-inner">
+          <span class="section-label">Material Guide</span>
+          <div class="divider"></div>
+          <h1 class="display-xl metal-page-title">{metal.name}</h1>
+          <p class="metal-page-tagline">{metal.tagline}</p>
+          <p class="metal-page-desc">{metal.desc}</p>
+          <div class="metal-page-actions">
+            <a href="/quote" class="btn btn-primary">Get a Quote</a>
+            <a href="/locations" class="btn btn-outline">Find a Store</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick properties -->
+    <section class="metal-props">
+      <div class="container">
+        <div class="metal-props-grid">
+          {metal.properties.map((p) => (
+            <div class="metal-prop">
+              <div class="metal-prop-label">{p.label}</div>
+              <div class="metal-prop-value">{p.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Grades -->
+    <section class="metal-grades-section">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:40px;">
+          <span class="section-label">Available Grades</span>
+          <div class="divider"></div>
+          <h2 class="display-md">Grades We Stock</h2>
+        </div>
+        <div class="metal-grades-grid">
+          {metal.grades.map((g, i) => (
+            <div class={`metal-grade-card reveal delay-${Math.min(i + 1, 6)}`}>
+              <div class="metal-grade-name">{g.grade}</div>
+              <p class="metal-grade-desc">{g.desc}</p>
+              <div class="metal-grade-apps">
+                <span class="metal-grade-apps-label">Applications: </span>
+                {g.applications}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Shapes -->
+    <section class="metal-shapes-section">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:40px;">
+          <span class="section-label">Available Forms</span>
+          <div class="divider"></div>
+          <h2 class="display-md">Shapes & Profiles</h2>
+          <p style="font-family:var(--font-light); font-size:15px; color:var(--text-secondary); margin-top:12px; line-height:1.7; max-width:520px;">
+            All shapes are available cut to your exact dimensions with no minimum order.
+            Tolerances to ±0.015".
+          </p>
+        </div>
+        <div class="metal-shapes-list">
+          {metal.shapes.map((s) => (
+            <div class="metal-shape-item reveal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metal-shape-check"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{s}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="metal-page-cta">
+      <div class="container">
+        <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
+          <h2 class="display-md" style="margin-bottom:20px;">
+            Ready to Order {metal.name}?
+          </h2>
+          <p style="font-family:var(--font-light); font-size:16px; color:var(--text-secondary); line-height:1.7; margin-bottom:36px;">
+            Request a quote online or walk into any of our 130+ locations.
+            Cut to your exact dimensions. Same day. No minimums.
+          </p>
+          <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="/quote" class="btn btn-primary" style="padding:18px 40px;">Request a Quote</a>
+            <a href="/locations" class="btn btn-outline" style="padding:18px 32px;">Find Your Store</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.metal-page-hero {
+  position: relative;
+  padding: calc(72px + 80px) 0 80px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.metal-page-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(rgba(10,10,12,0.92) 0%, rgba(10,10,12,0.75) 100%),
+    url('/images/hero-steel.jpg') center/cover no-repeat;
+}
+.metal-page-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(21,101,192,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(21,101,192,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.metal-breadcrumb {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 32px;
+  font-family: var(--font-display); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.metal-breadcrumb-link { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.metal-breadcrumb-link:hover { color: var(--blue-light); }
+.metal-breadcrumb-sep { color: var(--border-light); }
+.metal-breadcrumb-current { color: var(--text-secondary); }
+
+.metal-page-inner { position: relative; z-index: 2; max-width: 720px; }
+.metal-page-title {
+  margin-bottom: 12px;
+  animation: slideInLeft 0.8s var(--ease-out) 0.2s both;
+}
+.metal-page-tagline {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--blue-light); margin-bottom: 20px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.35s both;
+}
+.metal-page-desc {
+  font-family: var(--font-light); font-size: 16px; color: var(--text-secondary);
+  line-height: 1.75; max-width: 600px; margin-bottom: 40px;
+  animation: fadeInUp 0.8s var(--ease-out) 0.5s both;
+}
+.metal-page-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeInUp 0.8s var(--ease-out) 0.65s both;
+}
+
+/* Props bar */
+.metal-props {
+  background: var(--surface-1);
+  border-top: 2px solid var(--blue);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+}
+.metal-props-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px;
+}
+@media (max-width: 1024px) { .metal-props-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px)  { .metal-props-grid { grid-template-columns: repeat(2, 1fr); } }
+.metal-prop {
+  padding: 24px 20px; background: var(--surface-2);
+  border: 1px solid var(--border); text-align: center;
+  transition: all 0.2s;
+}
+.metal-prop:hover { border-color: var(--blue); }
+.metal-prop-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.metal-prop-value { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--text-primary); }
+
+/* Grades */
+.metal-grades-section { padding: var(--section-pad) 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+.metal-grades-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+}
+@media (max-width: 768px) { .metal-grades-grid { grid-template-columns: 1fr; } }
+.metal-grade-card {
+  padding: 28px 24px; background: var(--surface-1);
+  border: 1px solid var(--border); transition: all 0.25s;
+}
+.metal-grade-card:hover { border-left-color: var(--blue); border-left-width: 3px; background: var(--surface-2); }
+.metal-grade-name { font-family: var(--font-display); font-weight: 900; font-size: 22px; color: var(--text-primary); margin-bottom: 10px; }
+.metal-grade-desc { font-family: var(--font-light); font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
+.metal-grade-apps { font-family: var(--font-light); font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.metal-grade-apps-label { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); }
+
+/* Shapes */
+.metal-shapes-section { padding: var(--section-pad) 0; background: var(--surface-1); border-bottom: 1px solid var(--border); }
+.metal-shapes-list {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2px;
+}
+.metal-shape-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px; background: var(--surface-2);
+  border: 1px solid var(--border); font-family: var(--font-display);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-primary);
+  transition: all 0.2s;
+}
+.metal-shape-item:hover { border-color: var(--blue); color: var(--blue-light); }
+.metal-shape-check { color: var(--blue); flex-shrink: 0; }
+
+/* CTA */
+.metal-page-cta { padding: var(--section-pad) 0; background: var(--bg); border-top: 1px solid var(--border); }
+</style>

@@ -1,0 +1,282 @@
+---
+const navItems = [
+  { label: "Metals", href: "/metals", hasDropdown: true },
+  { label: "Services", href: "/services", hasDropdown: false },
+  { label: "Locations", href: "/locations", hasDropdown: false },
+  { label: "About", href: "/about", hasDropdown: false },
+  { label: "Franchise", href: "/franchise", hasDropdown: false },
+];
+
+const metalsDropdown = [
+  { label: "Carbon Steel", sub: "A36, 1018, 1045, 4140", href: "/metals/carbon-steel" },
+  { label: "Stainless Steel", sub: "304, 316, 410, 17-4 PH", href: "/metals/stainless-steel" },
+  { label: "Aluminum", sub: "6061, 5052, 7075, 3003", href: "/metals/aluminum" },
+  { label: "Copper", sub: "C110, C101, C145", href: "/metals/copper" },
+  { label: "Brass", sub: "C260, C360, Naval Brass", href: "/metals/brass" },
+  { label: "Bronze", sub: "C932 Bearing, C954 Aluminum", href: "/metals/bronze" },
+  { label: "Tool Steel", sub: "A2, D2, O1, H13, M2", href: "/metals/tool-steel" },
+  { label: "Titanium", sub: "Grade 2, Ti-6Al-4V (Gr5)", href: "/metals/titanium" },
+  { label: "Alloy Steel", sub: "4140, 4340, 4130, 8620", href: "/metals/alloy-steel" },
+  { label: "Nickel Alloys", sub: "Inconel 625/718, Hastelloy", href: "/metals/nickel-alloys" },
+  { label: "Hot Rolled Steel", sub: "Angle, Channel, I-Beam, Plate", href: "/metals/hot-rolled-steel" },
+  { label: "All Metals →", sub: "Browse 8,000+ types & grades", href: "/metals" },
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-inner container">
+    <!-- Logo — real Metal Supermarkets logo -->
+    <a href="/" class="header-logo" aria-label="Metal Supermarkets Home">
+      <img
+        src="/logo.png"
+        alt="Metal Supermarkets"
+        class="header-logo-img"
+        width="180"
+        height="66"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li class={`nav-item ${item.hasDropdown ? 'has-dropdown' : ''}`}>
+            <a href={item.href} class="nav-link">
+              {item.label}
+              {item.hasDropdown && (
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
+            </a>
+            {item.hasDropdown && (
+              <div class="dropdown">
+                <div class="dropdown-inner">
+                  {metalsDropdown.map((m) => (
+                    <a href={m.href} class="dropdown-item">
+                      <span class="dropdown-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M9 18L15 12L9 6"/>
+                        </svg>
+                      </span>
+                      <div>
+                        <div class="dropdown-label">{m.label}</div>
+                        <div class="dropdown-sub">{m.sub}</div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA -->
+    <div class="header-actions">
+      <a href="tel:1-888-317-9980" class="header-phone hide-mobile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.08 19.79 19.79 0 01.01 4.5 2 2 0 012 2.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 10.1a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        1-888-317-9980
+      </a>
+      <a href="/quote" class="btn btn-primary">Get a Quote</a>
+      <button class="mobile-menu-btn hide-desktop" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      {navItems.map((item) => (
+        <a href={item.href} class="mobile-nav-link">{item.label}</a>
+      ))}
+      <div class="mobile-divider"></div>
+      <a href="tel:1-888-317-9980" class="mobile-nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.08 19.79 19.79 0 01.01 4.5 2 2 0 012 2.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 10.1a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        1-888-317-9980
+      </a>
+      <a href="/quote" class="btn btn-primary" style="margin-top:16px;justify-content:center;">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<style>
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s var(--ease);
+}
+.site-header.scrolled {
+  background: rgba(10, 10, 12, 0.98);
+  border-bottom-color: var(--blue);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 32px;
+}
+
+/* Real Logo */
+.header-logo { display: flex; align-items: center; flex-shrink: 0; }
+.header-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(21,101,192,0.2));
+  transition: filter 0.2s;
+}
+.header-logo:hover .header-logo-img {
+  filter: drop-shadow(0 0 12px rgba(21,101,192,0.4));
+}
+
+/* Nav */
+.header-nav { flex: 1; display: flex; justify-content: center; }
+.nav-list { display: flex; align-items: center; gap: 4px; }
+.nav-item { position: relative; }
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-radius: 2px;
+  transition: color 0.2s;
+}
+.nav-link:hover,
+.nav-item:hover .nav-link { color: var(--text-primary); }
+.nav-link svg { transition: transform 0.2s; }
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  width: 380px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--blue);
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.nav-item:hover .dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-inner { padding: 8px; display: grid; grid-template-columns: 1fr 1fr; }
+.dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.dropdown-item:hover { background: var(--surface-2); }
+.dropdown-item:hover .dropdown-icon { color: var(--blue-light); }
+.dropdown-icon { color: var(--text-muted); transition: color 0.15s; margin-top: 2px; flex-shrink: 0; }
+.dropdown-label {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-primary);
+}
+.dropdown-sub {
+  font-family: var(--font-light);
+  font-size: 11px; color: var(--text-muted); margin-top: 2px;
+}
+
+/* Actions */
+.header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.header-phone {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-display); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.05em; color: var(--text-secondary);
+  transition: color 0.2s;
+}
+.header-phone:hover { color: var(--blue-light); }
+
+/* Mobile */
+.mobile-menu-btn { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
+.mobile-menu-btn span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text-primary); border-radius: 2px;
+  transition: all 0.3s var(--ease);
+}
+.mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-menu-btn.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+.mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-menu {
+  display: none;
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s var(--ease);
+}
+.mobile-menu.open { max-height: 600px; }
+.mobile-menu-inner {
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.mobile-nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-secondary); border-radius: 3px;
+  transition: all 0.2s;
+}
+.mobile-nav-link:hover {
+  background: var(--surface-2);
+  color: var(--blue-light);
+  padding-left: 24px;
+}
+.mobile-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
+@media (max-width: 768px) {
+  .mobile-menu { display: block; }
+  .header-nav { display: none; }
+}
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  mobileBtn?.addEventListener('click', () => {
+    mobileBtn.classList.toggle('open');
+    mobileMenu?.classList.toggle('open');
+  });
+</script>
