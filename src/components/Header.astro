@@ -170,7 +170,7 @@ const metalsDropdown = [
 /* Dropdown */
 .dropdown {
   position: absolute;
-  top: calc(100% + 12px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   width: 380px;
@@ -182,6 +182,16 @@ const metalsDropdown = [
   pointer-events: none;
   transition: all 0.25s var(--ease);
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  padding-top: 12px;
+}
+/* Bridge the gap so the cursor doesn't lose hover moving into the dropdown */
+.nav-item.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  right: -16px;
+  height: 14px;
 }
 .nav-item:hover .dropdown {
   opacity: 1;

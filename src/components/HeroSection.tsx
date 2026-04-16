@@ -108,7 +108,9 @@ export default function HeroSection() {
 
       {/* Scroll cue */}
       <a href="#metals-showcase" className="hero-scroll" aria-label="Scroll down">
-        <ChevronDown size={20} />
+        <span className="hero-scroll-label">Scroll</span>
+        <span className="hero-scroll-line" />
+        <ChevronDown size={14} className="hero-scroll-chevron" />
       </a>
 
       {/* Marquee */}
@@ -383,19 +385,49 @@ export default function HeroSection() {
         /* Scroll cue */
         .hero-scroll {
           position: absolute;
-          bottom: 100px; right: 60px;
+          bottom: 112px;
+          left: 50%;
+          transform: translateX(-50%);
           z-index: 3;
-          width: 44px; height: 44px;
-          border: 1px solid var(--border-light);
-          border-radius: 50%;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          color: var(--text-secondary);
-          transition: all 0.2s;
-          animation: float 3s ease-in-out infinite;
+          gap: 6px;
+          color: rgba(192,192,192,0.45);
+          text-decoration: none;
+          transition: color 0.25s;
         }
-        .hero-scroll:hover { border-color: var(--blue); color: var(--blue-light); }
+        .hero-scroll:hover { color: var(--blue-light); }
+
+        .hero-scroll-label {
+          font-family: var(--font-display);
+          font-size: 9px;
+          font-weight: 700;
+          letter-spacing: 0.35em;
+          text-transform: uppercase;
+        }
+
+        .hero-scroll-line {
+          display: block;
+          width: 1px;
+          height: 36px;
+          background: linear-gradient(to bottom, currentColor, transparent);
+          animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        .hero-scroll-chevron {
+          animation: scrollBounce 2s ease-in-out infinite;
+          margin-top: -4px;
+        }
+
+        @keyframes scrollPulse {
+          0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; }
+          50% { opacity: 0.9; transform: scaleY(0.7); transform-origin: top; }
+        }
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(5px); }
+        }
         @media (max-width: 768px) { .hero-scroll { display: none; } }
 
         /* Marquee */
